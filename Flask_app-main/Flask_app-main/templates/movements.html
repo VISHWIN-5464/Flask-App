@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Product Movements</h2>
+<form method="POST">
+    <label>Product:</label>
+    <select name="product_id">
+        {% for p in products %}
+            <option value="{{ p[0] }}">{{ p[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>From Location:</label>
+    <select name="from_location">
+        <option value="">-- None --</option>
+        {% for l in locations %}
+            <option value="{{ l[0] }}">{{ l[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>To Location:</label>
+    <select name="to_location">
+        <option value="">-- None --</option>
+        {% for l in locations %}
+            <option value="{{ l[0] }}">{{ l[1] }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Quantity:</label>
+    <input name="qty" type="number" min="1" required><br><br>
+
+    <button type="submit">Move</button>
+</form>
+
+<h3>All Movements</h3>
+<ul>
+    {% for m in movements %}
+        <li>ID: {{ m[0] }} | Product ID: {{ m[4] }} | Qty: {{ m[5] }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
